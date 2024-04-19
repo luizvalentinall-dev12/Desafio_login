@@ -2,6 +2,7 @@
  login($_POST);
 function login(?array $post = null){
     session_start();
+    $_SESSION['autenticado'] = false;
 
     $resp = [
         'msg' => 'login falhou! Valide Usuario ou Senha !!',
@@ -19,7 +20,7 @@ function login(?array $post = null){
             break;
         }
     }
-  
+
     if (password_verify(trim($post['password']), $infoUser['password'])){
         unset($infoUser['password']);
         $_SESSION['login'] = $infoUser;
@@ -28,10 +29,15 @@ function login(?array $post = null){
             'user' => $_SESSION['login'],
             'status' => 200
         ];
+        http_response_code($resp['status']);
+        $_SESSION['autenticado'] = true;
+        header("Location: home.php");
+        exit;
     }
-   
+
     http_response_code($resp['status']);
     unset($resp['status']);
-    die(json_encode($resp));
+    header("Location: index.html?erro=1");
+    exit;
 }
 
