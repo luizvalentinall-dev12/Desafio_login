@@ -6,7 +6,7 @@
 
 ###  Usuario1: username: usuario1 , senha: BatataComFeijao@
 
-###  Usuario1: username: usuario1 , senha: FeijaoComFeijao@
+###  Usuario1: username: usuario2 , senha: FeijaoComFeijao@
 
 
 
