@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== true) {
+        header("Location: index.html");
+        exit;
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -34,7 +42,10 @@
 <div class="container">
     <h2>Seja Bem-Vindo!</h2>
     <p>Obrigado por fazer login. Você agora está autenticado e pode acessar o conteúdo protegido.</p>
-    <p><a>Sair</a></p>
+    <form action="deslogar.php" method="post">
+        <!--Olha a gambiarra -->
+        <input type="submit" value="sair">
+    </form>
 </div>
 
 </body>

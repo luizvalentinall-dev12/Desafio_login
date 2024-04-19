@@ -2,6 +2,7 @@
  login($_POST);
 function login(?array $post = null){
     session_start();
+    $_SESSION['autenticado'] = false;
 
     $resp = [
         'msg' => 'login falhou! Valide Usuario ou Senha !!',
@@ -29,7 +30,8 @@ function login(?array $post = null){
             'status' => 200
         ];
         http_response_code($resp['status']);
-        header("Location: home.html");
+        $_SESSION['autenticado'] = true;
+        header("Location: home.php");
         exit;
     }
    
