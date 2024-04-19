@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['login']) == true) {
+    header('Location: index.html');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -34,7 +42,7 @@
 <div class="container">
     <h2>Seja Bem-Vindo!</h2>
     <p>Obrigado por fazer login. Você agora está autenticado e pode acessar o conteúdo protegido.</p>
-    <p><a>Sair</a></p>
+    <p><a href="logout.php">Sair</a></p> <!-- Adiciona um link para a página de logout -->
 </div>
 
 </body>
