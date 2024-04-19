@@ -19,7 +19,7 @@ function login(?array $post = null){
             break;
         }
     }
-  
+
     if (password_verify(trim($post['password']), $infoUser['password'])){
         unset($infoUser['password']);
         $_SESSION['login'] = $infoUser;
@@ -28,6 +28,9 @@ function login(?array $post = null){
             'user' => $_SESSION['login'],
             'status' => 200
         ];
+        http_response_code($resp['status']);
+        header("Location: home.html");
+        exit;
     }
    
     http_response_code($resp['status']);
