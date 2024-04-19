@@ -2,10 +2,13 @@
  login($_POST);
 function login(?array $post = null){
     session_start();
+    ob_start();
 
-    $resp = [
+    $url = 'index.phtml';
+
+    $resp= [
         'msg' => 'login falhou! Valide Usuario ou Senha !!',
-        'status' => 200
+        'status' => 401,
     ];
 
     $json_data = file_get_contents('dataUsers.json');
@@ -26,12 +29,12 @@ function login(?array $post = null){
         $resp = [
             'msg' => 'Login Realizado!!!',
             'user' => $_SESSION['login'],
-            'status' => 200
+            'status' => 200,
         ];
+        $url = 'home.phtml';
     }
    
     http_response_code($resp['status']);
     unset($resp['status']);
-    die(json_encode($resp));
+    header('location: /'.$url);
 }
-
