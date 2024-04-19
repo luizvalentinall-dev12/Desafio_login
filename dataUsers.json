@@ -1,0 +1,16 @@
+[
+    {
+      "id": 1,
+      "nome": "Usuário 1",
+      "email": "usuario1@example.com",
+      "username": "usuario1",
+      "password": "$argon2id$v=19$m=65536,t=4,p=1$MENKdXd3eU9mWHplREFCbQ$QGMTevfqa/uOOWIfirhiisgAWV7IXN6eWket4Zl/RU0"
+    },
+    {
+      "id": 2,
+      "nome": "Usuário 2",
+      "email": "usuario2@example.com",
+      "username": "usuario2",
+      "password": "$argon2id$v=19$m=65536,t=4,p=1$SjJWQ2tzR2EwRTlGZDEzaA$WVH++CTiECqouBufdjYI08HC4SKsL5GWIN20VMgurXs"
+    }
+  ]
