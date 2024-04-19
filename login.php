@@ -1,37 +1,55 @@
 <?php
- login($_POST);
-function login(?array $post = null){
+$message_code = [
+    '0' => 'None',
+    '1' => 'Login Realizado!!!',
+    '2' => 'Usuário não encontrado',
+    '3' => 'Senha incorreta',
+];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    login($_POST);
+}
+
+function login(?array $post = null)
+{
     session_start();
 
-    $resp = [
-        'msg' => 'login falhou! Valide Usuario ou Senha !!',
-        'status' => 200
-    ];
+    if (!isset($post['username']) || !isset($post['password'])) {
+        returnError(2);
+    }
 
     $json_data = file_get_contents('dataUsers.json');
 
+
     $data = json_decode($json_data, true);
 
-    $infoUser = [];
-    foreach($data as $user){
-        if($user['username'] == $post['username']){
+
+    $infoUser = null;
+    foreach ($data as $user) {
+        if ($user['username'] === $post['username']) {
             $infoUser = $user;
             break;
         }
     }
-  
-    if (password_verify(trim($post['password']), $infoUser['password'])){
-        unset($infoUser['password']);
-        $_SESSION['login'] = $infoUser;
-        $resp = [
-            'msg' => 'Login Realizado!!!',
-            'user' => $_SESSION['login'],
-            'status' => 200
-        ];
+
+    if ($infoUser !== null) {
+        if (password_verify($post['password'], $infoUser['password'])) {
+            unset($infoUser['password']);
+            $_SESSION['login'] = $infoUser;
+            header('Location: home.php');
+            exit();
+        } else {
+            returnError(3);
+        }
+    } else {
+        returnError(2);
     }
-   
-    http_response_code($resp['status']);
-    unset($resp['status']);
-    die(json_encode($resp));
 }
 
+function returnError($code)
+{
+    global $message_code;
+    $errorMessage = $message_code[$code];
+    echo "<p style='color: red;'>$errorMessage</p>";
+}
+?>
