@@ -34,9 +34,10 @@ function login(?array $post = null){
         header("Location: home.php");
         exit;
     }
-   
+
     http_response_code($resp['status']);
     unset($resp['status']);
-    die(json_encode($resp));
+    header("Location: index.html?erro=1");
+    exit;
 }
 

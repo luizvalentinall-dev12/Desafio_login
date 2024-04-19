@@ -43,7 +43,6 @@
     <h2>Seja Bem-Vindo!</h2>
     <p>Obrigado por fazer login. Você agora está autenticado e pode acessar o conteúdo protegido.</p>
     <form action="deslogar.php" method="post">
-        <!--Olha a gambiarra -->
         <input type="submit" value="sair">
     </form>
 </div>
