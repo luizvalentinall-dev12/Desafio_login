@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Página de Login</title>
     <style>
         body {
@@ -50,13 +51,16 @@
 <div class="container">
     <h2>Login</h2>
     <div>
-        <label for="username">Usuário:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit" value="Entrar">
+        <form id="formLogin">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <input id="submit" type="submit" value="Entrar">
+        </form>
+        <p id="userCrendentialsReturn"></p>
     </div>
 </div>
-
+<script src="/statusLogin.js"></script>
 </body>
 </html>
